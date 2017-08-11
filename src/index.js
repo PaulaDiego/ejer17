@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import $ from 'jquery';
 
 
+let persona = {};
+$.ajax({
+	type: 'get',
+	url:"http://localhost:59446/api/Persona/1",
+	success: function(result){
+		persona = result;
+		ReactDOM.render(<App persona = {persona}/>, document.getElementById('root'));
+	}
+});
 
-const persona = {
-	Nombre: 'Juan',
-	Apellidos: 'Perez',
-	Edad: 55
-}
-ReactDOM.render(<App persona = {persona}/>, document.getElementById('root'));
-registerServiceWorker();
